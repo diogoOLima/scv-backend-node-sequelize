@@ -46,6 +46,11 @@ class Funcionario extends Model {
       }
     }, { sequelize, modelName: 'funcionario', tableName: 'funcionarios' })
   }
+
+  static associate(models) {
+    this.belongsTo(models.bairro, {as: 'bairro', foreignKey: {name: 'bairroId' , allowNull: false, validate: {notNull: {msg: 'Bairro do Funcionário deve ser preenchido!'}}}});
+    this.hasMany(models.telefone, {as: 'telefones', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+  }
   
 }
 

@@ -27,6 +27,11 @@ class Multa extends Model {
     }, { sequelize, modelName: 'multa', tableName: 'multas' })
   }
 
+  static associate(models) {
+    this.belongsTo(models.emprestimo, { as: 'emprestimo', foreignKey: {name: 'emprestimoId' , allowNull: false, validate: {notNull: {msg: 'Empréstimo da Multa deve ser preenchido!'} }}});
+    this.belongsTo(models.fita, { as: 'fita', foreignKey: {name: 'fitaId', allowNull: false, validate: {notNull: {msg: 'Fita da Multa deve ser preenchida!'}}}});
+  }
+
 }
 
 export { Multa };

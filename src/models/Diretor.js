@@ -13,6 +13,9 @@ class Diretor extends Model {
       },
     }, { sequelize, modelName: 'diretor', tableName: 'diretores' })
   }
+
+  static associate(models) {
+  }
   
 }
 

@@ -22,6 +22,9 @@ class Artista extends Model {
       }
     }, { sequelize, modelName: 'artista', tableName: 'artistas' })
   }
+
+  static associate(models) {
+  }
   
 }
 

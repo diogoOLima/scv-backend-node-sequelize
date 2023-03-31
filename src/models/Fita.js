@@ -18,6 +18,10 @@ class Fita extends Model {
       }
     }, { sequelize, modelName: 'fita', tableName: 'fitas' })
   }
+
+  static associate(models) {
+    this.belongsTo(models.filme, {as: 'filme', foreignKey: {name: 'filmeId', allowNull: false, validate: {notNull: {msg: 'Filme da Fita deve ser preenchido!'}}}});
+  }
   
 }
 

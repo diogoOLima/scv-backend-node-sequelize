@@ -6,6 +6,24 @@ class ItemDeEmprestimo extends Model {
 
   static init(sequelize) {
     super.init({
+      /*
+      emprestimoId: {
+        type: DataTypes.INTEGER,
+        references: { model: Emprestimo, key: 'id' },
+        primaryKey: true,
+        validate: {
+          notEmpty: { msg: "ID do Empréstimo deve ser informado!" }
+        }
+      },
+      fitaId: {
+        type: DataTypes.INTEGER,
+        references: { model: Fita, key: 'id' },
+        primaryKey: true,
+        validate: {
+          notEmpty: { msg: "ID da Fita deve ser informada!" }
+        }
+      },
+      */
       valor: { 
         type: DataTypes.DOUBLE, 
         validate: {
@@ -20,6 +38,11 @@ class ItemDeEmprestimo extends Model {
         }
       }
     }, { sequelize, modelName: 'itemDeEmprestimo', tableName: 'itens_de_emprestimo' })
+  }
+
+  static associate(models) {
+    this.belongsTo(models.emprestimo, {as: 'emprestimo', foreignKey: {name: 'emprestimoId', allowNull: false, validate: {notNull: {msg: 'Empréstimo do Item de Empréstimo deve ser preenchido!'} }}});
+    this.belongsTo(models.fita, {as: 'fita', foreignKey: {name: 'fitaId', allowNull: false, validate: {notNull: {msg: 'Fita do Item de Empréstimo deve ser preenchida!'}}}});
   }
 
 }

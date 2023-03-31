@@ -35,6 +35,12 @@ class Filme extends Model {
       }
     }, { sequelize, modelName: 'filme', tableName: 'filmes' })
   }
+
+  static associate(models) {
+    this.belongsTo(models.tipoDeFilme, {as: 'tipoDeFilme', foreignKey: {name: 'tipoDeFilmeId', allowNull: false, validate: {notNull: {msg: 'Tipo de Filme do Filme deve ser preenchido!'}}}});
+    this.belongsToMany(models.diretor, {as: 'diretores', through: models.filme_diretor, onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+    this.hasMany(models.participacao, {as: {singular:'participacao' , plural: 'participacoes'}, onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+  }
   
 }
 

@@ -31,6 +31,11 @@ class Devolucao extends Model {
     }, { sequelize, modelName: 'devolucao', tableName: 'devolucoes' })
   }
 
+  static associate(models) {
+    this.belongsTo(models.devolucao, { as: 'fita', foreignKey: {name: 'fitaId', allowNull: false, validate: {notNull: {msg: 'Fita da Devoução deve ser preenchida!'} }} } );
+    this.belongsTo(models.devolucao, { as: 'emprestimo', foreignKey: {name: 'emprestimoId', allowNull: false, validate: {notNull: {msg: 'Empréstimo da Devolução deve ser preenchido!'} }} } );
+  }
+
 }
 
 export { Devolucao };

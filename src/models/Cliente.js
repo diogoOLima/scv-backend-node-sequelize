@@ -45,6 +45,11 @@ class Cliente extends Model {
       }
     }, { sequelize, modelName: 'cliente', tableName: 'clientes' })
   }
+
+  static associate(models) {
+    this.belongsTo(models.bairro, {as: 'bairro', foreignKey: {name: 'bairroId' , allowNull: false, validate: {notNull: {msg: 'Bairro do Cliente deve ser preenchido!'}}}});
+    this.hasMany(models.telefone, {as: 'telefones', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+  }
   
 }
 

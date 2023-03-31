@@ -46,6 +46,11 @@ class Gerente extends Model {
       }
     }, { sequelize, modelName: 'gerente', tableName: 'gerentes' })
   }
+
+  static associate(models) {
+    this.belongsTo(models.bairro, {as: 'bairro', foreignKey: {name: 'bairroId', allowNull: false, validate: {notNull: {msg: 'Bairro do Gerente deve ser preenchido!'}}}});
+    this.hasMany(models.telefone, {as: 'telefones', onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+  }
   
 }
 

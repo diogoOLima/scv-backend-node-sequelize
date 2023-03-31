@@ -19,6 +19,11 @@ class Reserva extends Model {
       }
     }, { sequelize, modelName: 'reserva', tableName: 'reservas' })
   }
+
+  static associate(models) {
+    this.belongsTo(models.cliente, { as: 'cliente', foreignKey: {name: 'clienteId', allowNull: false, validate: {notNull: {msg: 'Cliente da Reserva deve ser preenchido!'}}}});
+    this.belongsTo(models.fita, { as: 'fita', foreignKey: {name: 'fitaId', allowNull: false, validate: {notNull: {msg: 'Fita da Reserva deve ser preenchida!'}}}});
+  }
   
 }
 

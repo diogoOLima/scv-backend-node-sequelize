@@ -18,6 +18,11 @@ class Emprestimo extends Model {
       }
     }, { sequelize, modelName: 'emprestimo', tableName: 'emprestimos' })
   }
+
+  static associate(models) {
+    this.belongsTo(models.cliente, {as: 'cliente', foreignKey: {name: 'clienteId', allowNull: false, validate: {notNull: {msg: 'Cliente do Empréstimo deve ser preenchido!'}}}});
+    this.hasMany(models.itemDeEmprestimo, { as: { singular:'item' , plural: 'itens'}, onDelete: 'CASCADE', onUpdate: 'CASCADE'});
+  }
   
 }
 

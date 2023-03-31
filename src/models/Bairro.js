@@ -13,6 +13,10 @@ class Bairro extends Model {
       }
     }, { sequelize, modelName: 'bairro', tableName: 'bairros' })
   }
+
+  static associate(models) {
+    this.belongsTo(models.cidade, {as: 'cidade', foreignKey: {name: 'cidadeId' , allowNull: false, validate: {notNull: {msg: 'Cidade do Bairro deve ser preenchida!'}}}});
+  }
   
 }
 

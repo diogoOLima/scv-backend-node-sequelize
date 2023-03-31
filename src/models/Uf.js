@@ -23,6 +23,9 @@ class Uf extends Model {
       }
     }, { sequelize, modelName: 'uf', tableName: 'ufs' })
   }
+
+  static associate(models) {
+  }
   
 }
 

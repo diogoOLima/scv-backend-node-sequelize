@@ -9,6 +9,9 @@ class TipoDeFilme extends Model {
       preco: DataTypes.FLOAT,
     }, { sequelize, modelName: 'tipoDeFilme', tableName: 'tipos_de_filme' })
   }
+
+  static associate(models) {
+  }
   
 }
 
